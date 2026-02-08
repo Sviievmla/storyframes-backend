@@ -1,5 +1,5 @@
 import json
-from paypalcheckoutsdk.orders import OrdersCreateRequest
+from paypal_checkout_serversdk.orders import OrdersCreateRequest
 from paypal_client import PayPalClient
 
 def create_paypal_order(product_id: int):
