@@ -63,7 +63,8 @@ def create_paypal_order(product_id: int):
     Returns:
         dict: Contains orderID
     """
-    products = json.load(open("products.json"))
+    with open("products.json") as f:
+        products = json.load(f)
     product = next(p for p in products if p["id"] == product_id)
 
     # Use the refactored helper function
