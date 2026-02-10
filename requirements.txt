@@ -1,3 +1,8 @@
 fastapi
 uvicorn
 paypal-checkout-serversdk
+sqlalchemy
+psycopg2-binary
+python-dotenv
+pydantic[email]
+python-multipart
