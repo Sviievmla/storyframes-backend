@@ -153,6 +153,7 @@ def capture_order(request: CaptureOrderRequest, db: Session = Depends(get_db)):
     
     Returns: {"status": "COMPLETED", "orderID": string}
     """
+    db_order = None
     try:
         # Capture PayPal payment
         result = capture_paypal_order(request.orderID)
