@@ -4,7 +4,7 @@ from pydantic import BaseModel, EmailStr
 from typing import Optional, List
 import json
 import logging
-from datetime import datetime
+from datetime import datetime, timezone
 from sqlalchemy.orm import Session
 
 from paypal_pay import create_paypal_order, create_paypal_order_from_amount, capture_paypal_order
@@ -171,7 +171,7 @@ def capture_order(request: CaptureOrderRequest, db: Session = Depends(get_db)):
         
         # Update order status
         db_order.status = OrderStatus.COMPLETED
-        db_order.completed_at = datetime.utcnow()
+        db_order.completed_at = datetime.now(timezone.utc)
         
         # Store PayPal payer information if available
         if result.get("payer"):

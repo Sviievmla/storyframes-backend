@@ -97,10 +97,11 @@ class EmailService:
         try:
             subject = f"New Order Received - #{order_data['id']}"
             
-            # Build items text
-            items_text = ""
-            for item in order_data.get('items', []):
-                items_text += f"- {item['product_name']} x{item['quantity']} @ {item['currency']} {item['unit_price']:.2f} = {item['currency']} {item['total_price']:.2f}\n"
+            # Build items text efficiently
+            items_text = '\n'.join([
+                f"- {item['product_name']} x{item['quantity']} @ {item['currency']} {item['unit_price']:.2f} = {item['currency']} {item['total_price']:.2f}"
+                for item in order_data.get('items', [])
+            ])
             
             html = f"""
             <html>
